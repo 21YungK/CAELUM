@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CAELUM
 
-## Getting Started
+CAELUM is my personal engineering portfolio focused on software, autonomous systems, UAVs, robotics, and technical projects.
 
-First, run the development server:
+The site was designed and built from scratch as an interactive portfolio rather than a traditional static resume.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Tech Stack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Interactive UAV flight telemetry interface
+- Dynamic attitude visualization
+- Responsive portfolio layout
+- Interactive experience timeline
+- Project case studies
+- Smooth section-based navigation
 
-## Learn More
+## Featured Work
 
-To learn more about Next.js, take a look at the following resources:
+### NAVIS
+A local AI-assisted UAV flight-log analysis tool designed to inspect telemetry, detect anomalies, correlate flight events, and assist with debugging.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### AI Real Estate Document Parser
+A university capstone project using Python, LangChain, retrieval-augmented generation, and document parsing to extract structured information from large real-estate documents.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### UAV Systems
+Hands-on UAV engineering experience involving aircraft builds, flight testing, troubleshooting, programming, and technical workshops.
 
-## Deploy on Vercel
+## Purpose
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+CAELUM serves as both a portfolio and an ongoing engineering project where I can experiment with interfaces for complex technical systems.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+Built by Drew Kyungjin Park.
