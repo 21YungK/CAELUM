@@ -1,4 +1,5 @@
 import NavisProject from "@/components/NavisProject";
+import CaelumProject from "@/components/CaelumProject";
 
 export default function ProjectsSection() {
   return (
@@ -25,6 +26,7 @@ export default function ProjectsSection() {
         </div>
 
         <NavisProject />
+        <CaelumProject />
       </div>
     </section>
   );
