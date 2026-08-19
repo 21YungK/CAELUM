@@ -3,6 +3,7 @@
 import { useState } from "react";
 import FlightTelemetry from "@/components/FlightTelemetry";
 import ExperienceTimeline from "@/components/ExperienceTimeline";
+import ProjectsSection from "@/components/ProjectsSection";
 
 export default function Home() {
   const [roll, setRoll] = useState(0);
@@ -117,6 +118,53 @@ export default function Home() {
                 they fail, and building tools that make those systems easier
                 to understand.
               </p>
+              <div className="mt-12 border-t border-white/10 pt-8">
+                <div className="flex items-center justify-between">
+                  <p className="font-mono text-xs tracking-[0.25em] text-zinc-600">
+                    EDUCATION // 001
+                  </p>
+
+                  <p className="font-mono text-xs tracking-[0.2em] text-zinc-700">
+                    MAR 2025
+                  </p>
+                </div>
+
+                <div className="mt-6">
+                  <h3 className="text-xl font-medium tracking-tight text-zinc-200">
+                    UNIVERSITY OF CALIFORNIA, IRVINE
+                  </h3>
+
+                  <p className="mt-3 text-zinc-400">
+                    B.S. Informatics
+                  </p>
+
+                  <p className="mt-1 text-sm text-zinc-500">
+                    Human-Computer Interaction · Minor in Management
+                  </p>
+                </div>
+
+                <div className="mt-7 grid grid-cols-2 gap-6 border-t border-white/10 pt-6">
+                  <div>
+                    <p className="font-mono text-[10px] tracking-[0.2em] text-zinc-700">
+                      GPA
+                    </p>
+
+                    <p className="mt-2 font-mono text-sm text-zinc-400">
+                      3.6 / 4.0
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="font-mono text-[10px] tracking-[0.2em] text-zinc-700">
+                      FOCUS
+                    </p>
+
+                    <p className="mt-2 font-mono text-sm text-zinc-400">
+                      HCI // SOFTWARE // SYSTEMS
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -148,6 +196,7 @@ export default function Home() {
 
         </div>
       </section>
+      <ProjectsSection />
     </main>
   );
 }
