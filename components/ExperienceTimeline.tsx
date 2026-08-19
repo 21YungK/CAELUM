@@ -113,21 +113,21 @@ export default function ExperienceTimeline() {
               type="button"
               onClick={() => toggleExperience(index)}
               aria-expanded={isOpen}
-              className="grid w-full cursor-pointer gap-6 py-10 text-left transition-all duration-300 hover:pl-3 md:grid-cols-[120px_1fr_1fr_40px]"
+              className="grid w-full cursor-pointer gap-6 py-10 text-left transition-all duration-300 hover:pl-3 md:grid-cols-[120px_1fr_1fr_40px] md:pl-6"
             >
               <p className="font-mono text-sm text-zinc-600">
                 {experience.period}
               </p>
 
-              <div>
+              <div className="md:pl-4">
                 <h3 className="text-2xl font-medium tracking-tight text-zinc-200 transition-colors group-hover:text-white">
-                  {experience.company}
+                    {experience.company}
                 </h3>
 
                 <p className="mt-2 font-mono text-xs tracking-[0.2em] text-zinc-500">
-                  {experience.category}
+                    {experience.category}
                 </p>
-              </div>
+                </div>
 
               <div>
                 <p className="text-zinc-300">

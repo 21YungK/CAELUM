@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import FlightTelemetry from "@/components/FlightTelemetry";
+import ExperienceTimeline from "@/components/ExperienceTimeline";
 
 export default function Home() {
   const [roll, setRoll] = useState(0);
@@ -67,11 +68,11 @@ export default function Home() {
       KYUNGJIN PARK
     </h1>
 
-    <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 font-mono text-sm tracking-wider text-zinc-400">
-      <span>SOFTWARE VALIDATION</span>
-      <span>UAV SYSTEMS</span>
-      <span>AUTOMATION</span>
-    </div>
+  <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 font-mono text-sm tracking-wider text-zinc-400">
+    <span>AUTONOMOUS SYSTEMS</span>
+    <span>UAVs</span>
+    <span>ROBOTICS</span>
+  </div>
 
     <p className="mt-10 max-w-xl text-lg leading-8 text-zinc-400">
       Building and validating systems at the intersection of software,
@@ -143,156 +144,8 @@ export default function Home() {
               </p>
           </div>
 
-          <div className="border-t border-white/10">
+          <ExperienceTimeline />
 
-  {/* SKYDIO */}
-  <div className="group grid gap-6 border-b border-white/10 py-10 transition-all duration-300 hover:border-white/25 hover:pl-3 md:grid-cols-[120px_1fr_1fr]">
-    <p className="font-mono text-sm text-zinc-600">
-      2026 — NOW
-    </p>
-
-    <div>
-      <h3 className="text-2xl font-medium tracking-tight transition-colors group-hover:text-white">
-        SKYDIO
-      </h3>
-
-      <p className="mt-2 font-mono text-xs tracking-[0.2em] text-zinc-500">
-        UAV SYSTEMS // PRODUCTION
-      </p>
-    </div>
-
-    <div>
-      <p className="text-zinc-300">
-        Drone Assembly Technician
-      </p>
-
-      <p className="mt-3 max-w-md leading-7 text-zinc-600 transition-colors group-hover:text-zinc-400">
-        Supporting the production of autonomous aircraft through hands-on
-        assembly, technical operations, and system-level troubleshooting.
-      </p>
-    </div>
-  </div>
-
-
-  {/* STEALTH ROBOTICS */}
-  <div className="group grid gap-6 border-b border-white/10 py-10 transition-all duration-300 hover:border-white/25 hover:pl-3 md:grid-cols-[120px_1fr_1fr]">
-    <p className="font-mono text-sm text-zinc-600">
-      2026
-    </p>
-
-    <div>
-      <h3 className="text-2xl font-medium tracking-tight transition-colors group-hover:text-white">
-        STEALTH ROBOTICS
-      </h3>
-
-      <p className="mt-2 font-mono text-xs tracking-[0.2em] text-zinc-500">
-        ROBOTICS // AI // VALIDATION
-      </p>
-    </div>
-
-    <div>
-      <p className="text-zinc-300">
-        R&D Operator
-      </p>
-
-      <p className="mt-3 max-w-md leading-7 text-zinc-600 transition-colors group-hover:text-zinc-400">
-        Executed structured system validation, generated labeled ML data,
-        documented failures, and worked with engineers to support debugging
-        and product iteration.
-      </p>
-    </div>
-  </div>
-
-
-  {/* UAVS @ UCI */}
-  <div className="group grid gap-6 border-b border-white/10 py-10 transition-all duration-300 hover:border-white/25 hover:pl-3 md:grid-cols-[120px_1fr_1fr]">
-    <p className="font-mono text-sm text-zinc-600">
-      2024 — 2025
-    </p>
-
-    <div>
-      <h3 className="text-2xl font-medium tracking-tight transition-colors group-hover:text-white">
-        UAVs @ UCI
-      </h3>
-
-      <p className="mt-2 font-mono text-xs tracking-[0.2em] text-zinc-500">
-        UAV ENGINEERING // LEADERSHIP
-      </p>
-    </div>
-
-    <div>
-      <p className="text-zinc-300">
-        Vice President
-      </p>
-
-      <p className="mt-3 max-w-md leading-7 text-zinc-600 transition-colors group-hover:text-zinc-400">
-        Led 15+ UAV teams, hosted 20+ technical workshops, and coordinated
-        60+ outdoor flight sessions covering builds, programming, flight
-        readiness, and safety.
-      </p>
-    </div>
-  </div>
-
-
-  {/* UCI LAW */}
-  <div className="group grid gap-6 border-b border-white/10 py-10 transition-all duration-300 hover:border-white/25 hover:pl-3 md:grid-cols-[120px_1fr_1fr]">
-    <p className="font-mono text-sm text-zinc-600">
-      2024 — 2025
-    </p>
-
-    <div>
-      <h3 className="text-2xl font-medium tracking-tight transition-colors group-hover:text-white">
-        UCI SCHOOL OF LAW
-      </h3>
-
-      <p className="mt-2 font-mono text-xs tracking-[0.2em] text-zinc-500">
-        IT // TECHNICAL SYSTEMS
-      </p>
-    </div>
-
-    <div>
-      <p className="text-zinc-300">
-        Student IT Technical Assistant
-      </p>
-
-      <p className="mt-3 max-w-md leading-7 text-zinc-600 transition-colors group-hover:text-zinc-400">
-        Supported 500+ users and maintained technology across 15+ hybrid
-        learning environments, including high-stakes technical support for
-        the California Bar Exam.
-      </p>
-    </div>
-  </div>
-
-
-  {/* ROK ARMY */}
-  <div className="group grid gap-6 border-b border-white/10 py-10 transition-all duration-300 hover:border-white/25 hover:pl-3 md:grid-cols-[120px_1fr_1fr]">
-    <p className="font-mono text-sm text-zinc-600">
-      2020 — 2022
-    </p>
-
-    <div>
-      <h3 className="text-2xl font-medium tracking-tight transition-colors group-hover:text-white">
-        ROK ARMY
-      </h3>
-
-      <p className="mt-2 font-mono text-xs tracking-[0.2em] text-zinc-500">
-        COMMUNICATIONS // FIELD SYSTEMS
-      </p>
-    </div>
-
-    <div>
-      <p className="text-zinc-300">
-        Radio Operations · 9th Infantry Division
-      </p>
-
-      <p className="mt-3 max-w-md leading-7 text-zinc-600 transition-colors group-hover:text-zinc-400">
-        Operated and maintained field communication systems, diagnosing
-        radio, signal, and antenna issues in time-sensitive environments.
-      </p>
-    </div>
-  </div>
-
-        </div>
         </div>
       </section>
     </main>
