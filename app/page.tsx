@@ -1,14 +1,45 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FlightTelemetry from "@/components/FlightTelemetry";
 import ExperienceTimeline from "@/components/ExperienceTimeline";
 import ProjectsSection from "@/components/ProjectsSection";
 import ContactSection from "@/components/ContactSection";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const [roll, setRoll] = useState(0);
   const [pitch, setPitch] = useState(0);
+
+    const fullName = "DREW KYUNGJIN PARK";
+    const [displayName, setDisplayName] = useState("");
+
+    useEffect(() => {
+      let index = 0;
+
+      const typingInterval = window.setInterval(() => {
+        index += 1;
+        setDisplayName(fullName.slice(0, index));
+
+        if (index >= fullName.length) {
+          window.clearInterval(typingInterval);
+        }
+      }, 65);
+
+      return () => window.clearInterval(typingInterval);
+    }, []);
+    
+    useEffect(() => {
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "manual";
+      }
+
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "instant",
+      });
+    }, []);
 
   function handleHeroMouseMove(event: React.MouseEvent<HTMLElement>) {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -62,12 +93,26 @@ export default function Home() {
 
         <div className="grid min-h-[calc(100vh-80px)] items-center gap-16 lg:grid-cols-[1.2fr_0.8fr]">
   <div className="max-w-5xl">
-    <p className="mb-6 font-mono text-sm tracking-[0.3em] text-zinc-500">
+    <motion.p
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="mb-6 font-mono text-sm tracking-[0.3em] text-zinc-500"
+    > 
       SOFTWARE // FLIGHT // SYSTEMS
-    </p>
+    </motion.p>
 
-    <h1 className="text-6xl font-semibold tracking-tight md:text-8xl lg:text-9xl">
-      KYUNGJIN PARK
+    <h1 className="min-h-[1.1em] text-6xl font-semibold tracking-tight md:text-8xl lg:text-9xl">
+      {displayName}
+      <motion.span
+        initial={{ opacity: 1 }}
+        animate={{ opacity: [1, 0, 1] }}
+        transition={{
+          duration: 0.8,
+          repeat: displayName === fullName ? 2 : Infinity,
+        }}
+        className="relative -top-[0.08em] ml-2 inline-block h-[0.78em] w-[2px] bg-white align-middle"
+      />
     </h1>
 
   <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 font-mono text-sm tracking-wider text-zinc-400">
@@ -199,7 +244,7 @@ export default function Home() {
       </section>
       <ProjectsSection />
       <ContactSection />
-      
+
     </main>
   );
 }
