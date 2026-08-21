@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import FlightTelemetry from "@/components/FlightTelemetry";
+import FlightVisual from "@/components/FlightVisual";
 import ExperienceTimeline from "@/components/ExperienceTimeline";
 import ProjectsSection from "@/components/ProjectsSection";
 import ContactSection from "@/components/ContactSection";
@@ -127,8 +127,8 @@ export default function Home() {
     </p>
   </div>
 
-  <div className="hidden lg:flex lg:justify-end">
-    <FlightTelemetry roll={roll} pitch={pitch} />
+  <div className="w-full lg:flex lg:justify-end">
+    <FlightVisual roll={roll} pitch={pitch} />
   </div>
 </div>
       </section>
