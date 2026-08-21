@@ -4,6 +4,7 @@ import { useState } from "react";
 import FlightTelemetry from "@/components/FlightTelemetry";
 import ExperienceTimeline from "@/components/ExperienceTimeline";
 import ProjectsSection from "@/components/ProjectsSection";
+import ContactSection from "@/components/ContactSection";
 
 export default function Home() {
   const [roll, setRoll] = useState(0);
@@ -197,6 +198,8 @@ export default function Home() {
         </div>
       </section>
       <ProjectsSection />
+      <ContactSection />
+      
     </main>
   );
 }
