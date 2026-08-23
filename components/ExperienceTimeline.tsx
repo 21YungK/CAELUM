@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const experiences = [
   {
@@ -96,10 +97,27 @@ export default function ExperienceTimeline() {
         const isOpen = openIndex === index;
 
         return (
-          <div
+          <motion.div
             key={`${experience.company}-${experience.period}`}
+            initial={{
+                opacity: 0,
+                y: 18,
+            }}
+            whileInView={{
+                opacity: 1,
+                y: 0,
+            }}
+            viewport={{
+                once: false,
+                amount: 0.35,
+            }}
+            transition={{
+                duration: 0.55,
+                delay: index * 0.05,
+                ease: [0.22, 1, 0.36, 1],
+            }}
             className="group relative border-b border-white/10 transition-colors duration-300 hover:border-white/25"
-          >
+            >
             {/* Timeline point */}
             <div className="absolute left-[121px] top-[46px] z-10 hidden h-[11px] w-[11px] rounded-full border border-zinc-600 bg-black transition-all duration-300 group-hover:border-white md:block">
               <div
@@ -145,7 +163,7 @@ export default function ExperienceTimeline() {
                     isOpen ? "rotate-45" : ""
                   }`}
                 >
-                  +
+                  
                 </span>
               </div>
             </button>
@@ -190,7 +208,7 @@ export default function ExperienceTimeline() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         );
       })}
     </div>

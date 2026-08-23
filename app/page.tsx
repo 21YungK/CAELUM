@@ -6,6 +6,7 @@ import ExperienceTimeline from "@/components/ExperienceTimeline";
 import ProjectsSection from "@/components/ProjectsSection";
 import ContactSection from "@/components/ContactSection";
 import { motion } from "framer-motion";
+import Reveal from "@/components/Reveal";
 
 export default function Home() {
   const [roll, setRoll] = useState(0);
@@ -224,18 +225,20 @@ export default function Home() {
       >
         <div className="mx-auto grid w-full max-w-6xl gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
           
-          <div>
-            <p className="font-mono text-sm tracking-[0.3em] text-zinc-500">
-              01 // ABOUT
-            </p>
+          <Reveal>
+            <div>
+              <p className="font-mono text-sm tracking-[0.3em] text-zinc-500">
+                01 // ABOUT
+              </p>
 
-            <h2 className="mt-6 text-4xl font-semibold tracking-tight md:text-6xl">
-              BUILT AROUND
-              <br />
-              CURIOSITY.
-            </h2>
-          </div>
-
+              <h2 className="mt-6 text-4xl font-semibold tracking-tight md:text-6xl">
+                BUILT AROUND
+                <br />
+                CURIOSITY.
+              </h2>
+            </div>
+          </Reveal>
+        <Reveal delay={0.12}>
           <div className="flex items-center">
             <div className="max-w-xl">
               <p className="text-xl leading-9 text-zinc-300">
@@ -299,7 +302,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-
+        </Reveal>
         </div>
       </section>
       <section
@@ -307,22 +310,24 @@ export default function Home() {
         className="min-h-screen border-t border-white/10 px-8 py-32 md:px-16 lg:px-24"
       >
         <div className="mx-auto w-full max-w-6xl">
-          <div className="mb-20">
-            <p className="font-mono text-sm tracking-[0.3em] text-zinc-500">
-              02 // EXPERIENCE
-            </p>
-
-            <h2 className="mt-6 text-4xl font-semibold tracking-tight md:text-6xl">
-              FROM SYSTEMS
-              <br />
-              TO FLIGHT.
-            </h2>
-
-            <p className="mt-6 max-w-lg text-lg leading-8 text-zinc-500">
-              A path through communications, technical systems, UAVs, robotics,
-              and autonomous aircraft.
+          <Reveal>
+            <div className="mb-20">
+              <p className="font-mono text-sm tracking-[0.3em] text-zinc-500">
+                02 // EXPERIENCE
               </p>
-          </div>
+
+              <h2 className="mt-6 text-4xl font-semibold tracking-tight md:text-6xl">
+                FROM SYSTEMS
+                <br />
+                TO FLIGHT.
+              </h2>
+
+              <p className="mt-6 max-w-lg text-lg leading-8 text-zinc-500">
+                A path through communications, technical systems, UAVs, robotics,
+                and autonomous aircraft.
+              </p>
+            </div>
+          </Reveal>
 
           <ExperienceTimeline />
 
