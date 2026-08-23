@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#050505"/>
+
+  <!-- D -->
+  <path
+    d="M18 16V48H27C36.5 48 41.5 42.2 41.5 32C41.5 21.8 36.5 16 27 16H18Z"
+    fill="none"
+    stroke="#ffffff"
+    stroke-width="3.25"
+    stroke-linejoin="round"
+  />
+
+  <!-- K -->
+  <path
+    d="M27.5 32L43.5 18"
+    fill="none"
+    stroke="#ffffff"
+    stroke-width="3.25"
+    stroke-linecap="round"
+  />
+  <path
+    d="M27.5 32L43.5 46"
+    fill="none"
+    stroke="#ffffff"
+    stroke-width="3.25"
+    stroke-linecap="round"
+  />
+
+  <!-- VECTOR / CHEVRON -->
+  <path
+    d="M45.5 32L50 28.5M45.5 32L50 35.5"
+    fill="none"
+    stroke="#ffffff"
+    stroke-width="2.25"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
