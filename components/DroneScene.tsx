@@ -12,8 +12,12 @@ import * as THREE from "three";
 
 function CaelumDrone({
   onLaunch,
+  onInteractionStart,
+  onInteractionEnd,
 }: {
   onLaunch?: () => void;
+  onInteractionStart?: () => void;
+  onInteractionEnd?: () => void;
 }) {
   const group = useRef<THREE.Group>(null);
 
@@ -28,6 +32,9 @@ function CaelumDrone({
 
   const lastPointerX = useRef(0);
   const lastPointerY = useRef(0);
+  const spinVelocityY = useRef(0);
+  const spinVelocityX = useRef(0);
+  const peakSpinVelocity = useRef(0);
 
   const { scene } = useGLTF("/models/caelum-uav.glb");
 
@@ -78,12 +85,26 @@ function CaelumDrone({
       // Hover
 
       if (!isDragging.current) {
-        group.current.rotation.y += delta * 0.14;
-      }
+        // Continue rotating from the user's last drag
+        group.current.rotation.y += spinVelocityY.current;
+        group.current.rotation.x += spinVelocityX.current;
+
+        // Friction / momentum decay
+        spinVelocityY.current *= 0.965;
+        spinVelocityX.current *= 0.94;
+
+        // Resume normal slow spin once momentum fades
+        if (Math.abs(spinVelocityY.current) < 0.002) {
+            group.current.rotation.y += delta * 0.14;
+        }
+        }
 
       // WIP stabilization
 
-      if (!isDragging.current) {
+      if (
+        !isDragging.current &&
+        Math.abs(spinVelocityX.current) < 0.003
+        ) {
         group.current.rotation.x =
           THREE.MathUtils.lerp(
             group.current.rotation.x,
@@ -123,15 +144,15 @@ function CaelumDrone({
       group.current.rotation.x =
         THREE.MathUtils.lerp(
           group.current.rotation.x,
-          -0.45,
-          Math.min(delta * 6, 1)
+          -0.55,
+          Math.min(delta * 7, 1)
         );
 
       group.current.rotation.z =
         THREE.MathUtils.lerp(
           group.current.rotation.z,
-          -0.3,
-          Math.min(delta * 5, 1)
+          -0.38,
+          Math.min(delta * 6, 1)
         );
 
       group.current.rotation.y += delta * 0.65;
@@ -143,7 +164,7 @@ function CaelumDrone({
 
     // Props
     const propSpeed =
-      delta * (launched ? 55 : 28);
+      delta * (launched ? 85 : 28);
 
     if (rotorFL.current) {
       rotorFL.current.rotation.y += propSpeed;
@@ -176,9 +197,13 @@ function CaelumDrone({
         e.stopPropagation();
 
         isDragging.current = true;
+        onInteractionStart?.();
 
         lastPointerX.current = e.clientX;
         lastPointerY.current = e.clientY;
+        spinVelocityY.current = 0;
+        spinVelocityX.current = 0;
+        peakSpinVelocity.current = 0;
 
         (
           e.target as HTMLElement
@@ -207,35 +232,61 @@ function CaelumDrone({
         lastPointerY.current = e.clientY;
 
         // Horizontal drag
+
         group.current.rotation.y +=
-          deltaX * (isMobile ? 0.012 : 0.008);
+        deltaX * (isMobile ? 0.012 : 0.008);
 
         // Vertical drag
+
         group.current.rotation.x +=
-          deltaY * (isMobile ? 0.01 : 0.006);
+        deltaY * (isMobile ? 0.01 : 0.006);
+
+        // Store rotational momentum
+        spinVelocityY.current =
+        deltaX * (isMobile ? 0.016 : 0.012);
+        peakSpinVelocity.current = Math.max(
+            peakSpinVelocity.current,
+            Math.abs(spinVelocityY.current)
+        );
+
+        spinVelocityX.current =
+        deltaY * (isMobile ? 0.012 : 0.008);
 
         // Fast swipe = launch
-        const launchThreshold =
-          isMobile ? 55 : 38;
+        // const launchThreshold =
+        //   isMobile ? 70 : 50;
 
-        if (
-          Math.abs(deltaX) >
-          launchThreshold
-        ) {
-          launchDrone();
-        }
+        // if (
+        //   Math.abs(deltaX) >
+        //   launchThreshold
+        // ) {
+        //   launchDrone();
+        // }
       }}
       onPointerUp={(e) => {
         e.stopPropagation();
 
         isDragging.current = false;
+        onInteractionEnd?.();
 
         (
-          e.target as HTMLElement
+            e.target as HTMLElement
         ).releasePointerCapture?.(
-          e.pointerId
+            e.pointerId
         );
-      }}
+
+        // Only launch after the user releases
+        // with a genuinely hard spin.
+        const launchVelocity =
+            isMobile ? 0.75 : 0.5;
+
+            if (
+            peakSpinVelocity.current >
+            launchVelocity
+            ) {
+            launchDrone();
+            }
+        }}
       onPointerCancel={() => {
         isDragging.current = false;
       }}
@@ -247,8 +298,12 @@ function CaelumDrone({
 
 export default function DroneScene({
   onLaunch,
+  onInteractionStart,
+  onInteractionEnd,
 }: {
   onLaunch?: () => void;
+  onInteractionStart?: () => void;
+  onInteractionEnd?: () => void;
 }) {
   return (
     <div className="h-full w-full cursor-grab touch-none active:cursor-grabbing">
@@ -281,8 +336,10 @@ export default function DroneScene({
 
         <Suspense fallback={null}>
           <CaelumDrone
-            onLaunch={onLaunch}
-          />
+                onLaunch={onLaunch}
+                onInteractionStart={onInteractionStart}
+                onInteractionEnd={onInteractionEnd}
+                />
 
           <Environment preset="studio" />
         </Suspense>

@@ -21,6 +21,8 @@ export default function IntroSequence({
   const readyTimerRef = useRef<number | null>(null);
   const exitTimerRef = useRef<number | null>(null);
   const completeTimerRef = useRef<number | null>(null);
+  const [isInteracting, setIsInteracting] = useState(false);
+  const [isLaunching, setIsLaunching] = useState(false);
 
   const clearIntroTimers = () => {
     if (aircraftTimerRef.current !== null) {
@@ -73,16 +75,17 @@ export default function IntroSequence({
   if (completedRef.current) return;
 
   clearIntroTimers();
+  setIsLaunching(true);
 
   // More time to fly 
   window.setTimeout(() => {
     setPhase("exit");
-  }, 650);
+  }, 750);
 
   // Reveal homepage after the exit fade
   window.setTimeout(() => {
     finishIntro();
-  }, 1300);
+  }, 1450);
 };
 
   return (
@@ -128,7 +131,11 @@ export default function IntroSequence({
               }}
               className="relative h-[70vh] w-[90vw]"
             >
-              <DroneScene onLaunch={handleDroneLaunch} />
+              <DroneScene
+                onLaunch={handleDroneLaunch}
+                onInteractionStart={() => setIsInteracting(true)}
+                onInteractionEnd={() => setIsInteracting(false)}
+                />
             </motion.div>
 
             <motion.div
@@ -138,9 +145,13 @@ export default function IntroSequence({
               }}
               animate={{
                 opacity:
-                  phase === "aircraft" || phase === "ready"
-                    ? 1
-                    : 0,
+                    isLaunching
+                        ? 1
+                        : phase === "aircraft" || phase === "ready"
+                        ? isInteracting
+                        ? 0.25
+                        : 1
+                        : 0,
                 y:
                   phase === "aircraft" || phase === "ready"
                     ? 0
@@ -153,8 +164,10 @@ export default function IntroSequence({
               className="absolute -bottom-10 text-center"
             >
               <p className="font-mono text-[10px] tracking-[0.24em] text-zinc-600">
-                DRAG // SPIN TO LAUNCH
-              </p>
+                {isLaunching
+                ? "LAUNCH COMMAND ACCEPTED"
+                : "DRAG // SPIN TO LAUNCH"}
+                </p>
             </motion.div>
 
             <motion.div
