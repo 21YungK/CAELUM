@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 export default function Home() {
   const [roll, setRoll] = useState(0);
   const [pitch, setPitch] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const fullName = "DREW KYUNGJIN PARK";
     const [displayName, setDisplayName] = useState("");
@@ -64,35 +65,120 @@ export default function Home() {
   onMouseLeave={resetHeroTelemetry}
   className="min-h-screen px-8 pt-28 md:px-16 lg:px-24"
 >
-        <nav className="fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-white/10 bg-black/70 px-8 py-6 backdrop-blur-md md:px-16 lg:px-24">
-          <a
-  href="#home"
-  className="font-mono text-sm tracking-[0.3em] text-zinc-500 transition-colors hover:text-white"
+<nav className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-black/80 backdrop-blur-xl">
+  <div className="flex h-[72px] items-center justify-between px-8 md:px-16 lg:px-24">
+    <a
+      href="#home"
+      onClick={() => setMobileMenuOpen(false)}
+      className="font-mono text-sm tracking-[0.3em] text-zinc-500 transition-colors hover:text-white"
+    >
+      CAELUM
+    </a>
+
+    {/* DESKTOP NAV */}
+    <div className="hidden items-center gap-8 font-mono text-xs tracking-widest text-zinc-400 md:flex">
+      <a href="#about" className="transition hover:text-white">
+        01 ABOUT
+      </a>
+
+      <a href="#experience" className="transition hover:text-white">
+        02 EXPERIENCE
+      </a>
+
+      <a href="#projects" className="transition hover:text-white">
+        03 PROJECTS
+      </a>
+
+      <a href="#contact" className="transition hover:text-white">
+        04 CONTACT
+      </a>
+    </div>
+
+    {/* MOBILE MENU BUTTON */}
+    <button
+      type="button"
+      onClick={() => setMobileMenuOpen((current) => !current)}
+      aria-expanded={mobileMenuOpen}
+      aria-label="Toggle navigation"
+      className="flex items-center gap-3 font-mono text-[10px] tracking-[0.2em] text-zinc-400 md:hidden"
+    >
+      <span>{mobileMenuOpen ? "CLOSE" : "MENU"}</span>
+
+      <span className="relative block h-4 w-5">
+        <span
+          className={`absolute left-0 top-[5px] h-px w-5 bg-current transition-transform duration-300 ${
+            mobileMenuOpen ? "translate-y-[3px] rotate-45" : ""
+          }`}
+        />
+
+        <span
+          className={`absolute bottom-[5px] left-0 h-px w-5 bg-current transition-transform duration-300 ${
+            mobileMenuOpen ? "-translate-y-[3px] -rotate-45" : ""
+          }`}
+        />
+      </span>
+    </button>
+  </div>
+</nav>
+{/* MOBILE NAVIGATION */}
+<div
+  className={`fixed inset-0 z-40 bg-black transition-all duration-500 md:hidden ${
+    mobileMenuOpen
+      ? "visible opacity-100"
+      : "invisible pointer-events-none opacity-0"
+  }`}
 >
-  CAELUM
-</a>
+  <div className="flex min-h-screen flex-col px-8 pb-10 pt-28">
+    <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-700">
+      NAVIGATION // CAELUM
+    </div>
 
-          <div className="hidden gap-8 font-mono text-xs tracking-widest text-zinc-400 md:flex">
-            <a href="#about" className="transition hover:text-white">
-              01 ABOUT
-            </a>
+    <div className="mt-12">
+      {[
+        ["01", "ABOUT", "#about"],
+        ["02", "EXPERIENCE", "#experience"],
+        ["03", "PROJECTS", "#projects"],
+        ["04", "CONTACT", "#contact"],
+      ].map(([number, label, href]) => (
+        <a
+          key={href}
+          href={href}
+          onClick={() => setMobileMenuOpen(false)}
+          className="group flex items-center justify-between border-t border-white/10 py-7"
+        >
+          <div className="flex items-baseline gap-5">
+            <span className="font-mono text-[10px] tracking-[0.2em] text-zinc-700">
+              {number}
+            </span>
 
-            <a href="#experience" className="transition hover:text-white">
-              02 EXPERIENCE
-            </a>
-
-            <a href="#projects" className="transition hover:text-white">
-              03 PROJECTS
-            </a>
-
-            <a href="#contact" className="transition hover:text-white">
-              04 CONTACT
-            </a>
+            <span className="text-3xl font-medium tracking-tight text-zinc-300 transition-colors group-hover:text-white">
+              {label}
+            </span>
           </div>
-        </nav>
 
-        <div className="grid min-h-[calc(100vh-80px)] items-center gap-16 lg:grid-cols-[1.2fr_0.8fr]">
-  <div className="max-w-5xl">
+          <span className="text-zinc-700 transition-all group-hover:translate-x-1 group-hover:text-white">
+            ↗
+          </span>
+        </a>
+      ))}
+
+      <div className="border-t border-white/10" />
+    </div>
+
+    <div className="mt-auto flex items-end justify-between border-t border-white/10 pt-6 font-mono text-[9px] tracking-[0.18em] text-zinc-700">
+      <span>
+        DREW KYUNGJIN PARK
+      </span>
+
+      <span>
+        PORTFOLIO // 2026
+      </span>
+    </div>
+  </div>
+</div>
+
+      <div className="grid min-h-[calc(100vh-80px)] items-center gap-16 lg:grid-cols-[1.2fr_0.8fr]">
+      <div className="max-w-5xl">
     <motion.p
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
