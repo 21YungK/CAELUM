@@ -129,7 +129,7 @@ export default function IntroSequence({
                 duration: 0.8,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="relative h-[70vh] w-[90vw]"
+              className="relative mx-auto h-[76vh] w-screen md:h-[70vh] md:w-[90vw]"
             >
               <DroneScene
                 onLaunch={handleDroneLaunch}

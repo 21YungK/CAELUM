@@ -37,9 +37,13 @@ export default function ProjectsSection() {
         <CaelumProject />
         </Reveal>
 
-        {/* <Reveal delay={0.12}> */}
+        <Reveal
+            delay={0.18}
+            y={36}
+            amount={0.02}
+            >
         <DocumentParserProject />
-        {/* </Reveal> */}
+        </Reveal>
       </div>
     </section>
   );

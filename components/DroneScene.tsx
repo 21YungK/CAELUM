@@ -32,13 +32,15 @@ function CaelumDrone({
 
   const lastPointerX = useRef(0);
   const lastPointerY = useRef(0);
+
   const spinVelocityY = useRef(0);
   const spinVelocityX = useRef(0);
+
   const peakSpinVelocity = useRef(0);
 
   const { scene } = useGLTF("/models/caelum-uav.glb");
 
-  const { viewport, size } = useThree();
+  const { size } = useThree();
 
   const isMobile = size.width < 768;
 
@@ -69,9 +71,9 @@ function CaelumDrone({
     const t = state.clock.elapsedTime;
 
     if (!launched) {
-      // Scaling
+// scale
 
-      const targetScale = isMobile ? 0.48 : 0.8;
+      const targetScale = isMobile ? 0.50 : 0.8;
 
       group.current.scale.lerp(
         new THREE.Vector3(
@@ -82,29 +84,32 @@ function CaelumDrone({
         Math.min(delta * 5, 1)
       );
 
-      // Hover
+// Rot momentum
 
       if (!isDragging.current) {
-        // Continue rotating from the user's last drag
-        group.current.rotation.y += spinVelocityY.current;
-        group.current.rotation.x += spinVelocityX.current;
+        group.current.rotation.y +=
+          spinVelocityY.current;
 
-        // Friction / momentum decay
+        group.current.rotation.x +=
+          spinVelocityX.current;
+
         spinVelocityY.current *= 0.965;
         spinVelocityX.current *= 0.94;
 
-        // Resume normal slow spin once momentum fades
-        if (Math.abs(spinVelocityY.current) < 0.002) {
-            group.current.rotation.y += delta * 0.14;
+        if (
+          Math.abs(spinVelocityY.current) <
+          0.002
+        ) {
+          group.current.rotation.y +=
+            delta * 0.14;
         }
-        }
+      }
 
-      // WIP stabilization
-
+// Stabilization
       if (
         !isDragging.current &&
         Math.abs(spinVelocityX.current) < 0.003
-        ) {
+      ) {
         group.current.rotation.x =
           THREE.MathUtils.lerp(
             group.current.rotation.x,
@@ -121,7 +126,7 @@ function CaelumDrone({
           );
       }
 
-      // responsive pos
+//RES pos
 
       const baseX = isMobile ? 0 : 0.45;
       const baseY = isMobile ? -0.05 : -0.2;
@@ -137,171 +142,205 @@ function CaelumDrone({
           (isMobile ? 0.04 : 0.08);
     }
 
+// LAUNCCCH
+
     if (launched) {
-
-      // launch mode
-
+      // Tilt forward slightly
       group.current.rotation.x =
         THREE.MathUtils.lerp(
           group.current.rotation.x,
-          -0.55,
+          -0.45,
           Math.min(delta * 7, 1)
         );
 
+      // Small bank only
       group.current.rotation.z =
         THREE.MathUtils.lerp(
           group.current.rotation.z,
-          -0.38,
+          isMobile ? -0.12 : -0.18,
           Math.min(delta * 6, 1)
         );
 
-      group.current.rotation.y += delta * 0.65;
+      // Keep some rotational energy
+      group.current.rotation.y +=
+        delta * 0.65;
 
-      group.current.position.y += delta * 4.5;
-      group.current.position.x += delta * 2;
-      group.current.position.z -= delta * 5;
+      // Straight upward launch
+      group.current.position.y +=
+        delta * (isMobile ? 5.5 : 5.2);
+
+      // Keep it centered horizontally
+      group.current.position.x =
+        THREE.MathUtils.lerp(
+          group.current.position.x,
+          0,
+          Math.min(delta * 3, 1)
+        );
+
+      // Move slightly away from camera
+      group.current.position.z -=
+        delta * (isMobile ? 2.8 : 3.2);
     }
 
-    // Props
+// Props
+
     const propSpeed =
       delta * (launched ? 85 : 28);
 
     if (rotorFL.current) {
-      rotorFL.current.rotation.y += propSpeed;
+      rotorFL.current.rotation.y +=
+        propSpeed;
     }
 
     if (rotorRR.current) {
-      rotorRR.current.rotation.y += propSpeed;
+      rotorRR.current.rotation.y +=
+        propSpeed;
     }
 
     if (rotorFR.current) {
-      rotorFR.current.rotation.y -= propSpeed;
+      rotorFR.current.rotation.y -=
+        propSpeed;
     }
 
     if (rotorRL.current) {
-      rotorRL.current.rotation.y -= propSpeed;
+      rotorRL.current.rotation.y -=
+        propSpeed;
     }
   });
 
   return (
-  <group>
-    {/* Larger invisible interaction area */}
-    <mesh
-      position={[0, 0, -0.5]}
-      onPointerDown={(e) => {
-        e.stopPropagation();
+    <group>
+      {/* Larger invisible interaction area */}
+      <mesh
+        position={[0, 0, -0.5]}
+        onPointerDown={(e) => {
+          e.stopPropagation();
 
-        isDragging.current = true;
+          isDragging.current = true;
 
-        onInteractionStart?.();
+          onInteractionStart?.();
 
-        lastPointerX.current = e.clientX;
-        lastPointerY.current = e.clientY;
+          lastPointerX.current = e.clientX;
+          lastPointerY.current = e.clientY;
 
-        spinVelocityY.current = 0;
-        spinVelocityX.current = 0;
-        peakSpinVelocity.current = 0;
+          spinVelocityY.current = 0;
+          spinVelocityX.current = 0;
+          peakSpinVelocity.current = 0;
 
-        (
-          e.target as HTMLElement
-        ).setPointerCapture?.(e.pointerId);
-      }}
-      onPointerMove={(e) => {
-        if (
-          !isDragging.current ||
-          !group.current ||
-          launched
-        ) {
-          return;
-        }
+          (
+            e.target as HTMLElement
+          ).setPointerCapture?.(
+            e.pointerId
+          );
+        }}
+        onPointerMove={(e) => {
+          if (
+            !isDragging.current ||
+            !group.current ||
+            launched
+          ) {
+            return;
+          }
 
-        e.stopPropagation();
+          e.stopPropagation();
 
-        const deltaX =
-          e.clientX - lastPointerX.current;
+          const deltaX =
+            e.clientX -
+            lastPointerX.current;
 
-        const deltaY =
-          e.clientY - lastPointerY.current;
+          const deltaY =
+            e.clientY -
+            lastPointerY.current;
 
-        lastPointerX.current = e.clientX;
-        lastPointerY.current = e.clientY;
+          lastPointerX.current =
+            e.clientX;
 
-        // Horizontal drag
-        group.current.rotation.y +=
-          deltaX * (isMobile ? 0.012 : 0.008);
+          lastPointerY.current =
+            e.clientY;
 
-        // Vertical drag
-        group.current.rotation.x +=
-          deltaY * (isMobile ? 0.01 : 0.006);
+          // Horizontal rotation
+          group.current.rotation.y +=
+            deltaX *
+            (isMobile ? 0.012 : 0.008);
 
-        // Store rotational momentum
-        spinVelocityY.current =
-          deltaX * (isMobile ? 0.016 : 0.012);
+          // Vertical rotation
+          group.current.rotation.x +=
+            deltaY *
+            (isMobile ? 0.01 : 0.006);
 
-        peakSpinVelocity.current = Math.max(
-          peakSpinVelocity.current,
-          Math.abs(spinVelocityY.current)
-        );
+          // Store momentum
+          spinVelocityY.current =
+            deltaX *
+            (isMobile ? 0.016 : 0.012);
 
-        spinVelocityX.current =
-          deltaY * (isMobile ? 0.012 : 0.008);
-      }}
-      onPointerUp={(e) => {
-        e.stopPropagation();
+          spinVelocityX.current =
+            deltaY *
+            (isMobile ? 0.012 : 0.008);
 
-        isDragging.current = false;
+          peakSpinVelocity.current =
+            Math.max(
+              peakSpinVelocity.current,
+              Math.abs(
+                spinVelocityY.current
+              )
+            );
+        }}
+        onPointerUp={(e) => {
+          e.stopPropagation();
 
-        onInteractionEnd?.();
+          isDragging.current = false;
 
-        (
-          e.target as HTMLElement
-        ).releasePointerCapture?.(
-          e.pointerId
-        );
+          onInteractionEnd?.();
 
-        const launchVelocity =
-          isMobile ? 0.75 : 0.5;
+          (
+            e.target as HTMLElement
+          ).releasePointerCapture?.(
+            e.pointerId
+          );
 
-        if (
-          peakSpinVelocity.current >
-          launchVelocity
-        ) {
-          launchDrone();
-        }
-      }}
-      onPointerCancel={() => {
-        isDragging.current = false;
-      }}
-    >
-      <planeGeometry
-        args={[
-          isMobile ? 10 : 8,
-          isMobile ? 10 : 6,
+          const launchVelocity =
+            isMobile ? 0.75 : 0.5;
+
+          if (
+            peakSpinVelocity.current >
+            launchVelocity
+          ) {
+            launchDrone();
+          }
+        }}
+        onPointerCancel={() => {
+          isDragging.current = false;
+        }}
+      >
+        <planeGeometry
+          args={[
+            isMobile ? 10 : 8,
+            isMobile ? 10 : 6,
+          ]}
+        />
+
+        <meshBasicMaterial
+          transparent
+          opacity={0}
+          depthWrite={false}
+        />
+      </mesh>
+
+      {/* Actual drone */}
+      <group
+        ref={group}
+        scale={isMobile ? 0.50 : 0.8}
+        rotation={[0.08, -0.75, 0]}
+        position={[
+            isMobile ? 0 : 0.45,
+            isMobile ? -0.05 : -0.2,
+            0,
         ]}
-      />
-
-      <meshBasicMaterial
-        transparent
-        opacity={0}
-        depthWrite={false}
-      />
-    </mesh>
-
-    {/* Actual drone */}
-    <group
-      ref={group}
-      scale={isMobile ? 0.48 : 0.8}
-      rotation={[0.08, -0.75, 0]}
-      position={[
-        isMobile ? 0 : 0.45,
-        isMobile ? -0.05 : -0.2,
-        0,
-      ]}
-    >
-      <primitive object={scene} />
+      >
+        <primitive object={scene} />
+      </group>
     </group>
-  </group>
-);
+  );
 }
 
 export default function DroneScene({
@@ -344,10 +383,14 @@ export default function DroneScene({
 
         <Suspense fallback={null}>
           <CaelumDrone
-                onLaunch={onLaunch}
-                onInteractionStart={onInteractionStart}
-                onInteractionEnd={onInteractionEnd}
-                />
+            onLaunch={onLaunch}
+            onInteractionStart={
+              onInteractionStart
+            }
+            onInteractionEnd={
+              onInteractionEnd
+            }
+          />
 
           <Environment preset="studio" />
         </Suspense>
@@ -356,4 +399,6 @@ export default function DroneScene({
   );
 }
 
-useGLTF.preload("/models/caelum-uav.glb");
+useGLTF.preload(
+  "/models/caelum-uav.glb"
+);
