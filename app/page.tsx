@@ -7,16 +7,24 @@ import ProjectsSection from "@/components/ProjectsSection";
 import ContactSection from "@/components/ContactSection";
 import { motion } from "framer-motion";
 import Reveal from "@/components/Reveal";
+import IntroSequence from "@/components/IntroSequence";
 
 export default function Home() {
   const [roll, setRoll] = useState(0);
   const [pitch, setPitch] = useState(0);
+  const [introComplete, setIntroComplete] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
 
     const fullName = "DREW KYUNGJIN PARK";
     const [displayName, setDisplayName] = useState("");
 
     useEffect(() => {
+      if (!introComplete) {
+        setDisplayName("");
+        return;
+      }
+
       let index = 0;
 
       const typingInterval = window.setInterval(() => {
@@ -29,7 +37,7 @@ export default function Home() {
       }, 65);
 
       return () => window.clearInterval(typingInterval);
-    }, []);
+    }, [introComplete]);
     
     useEffect(() => {
       if ("scrollRestoration" in window.history) {
@@ -59,8 +67,14 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-black text-white">
-      <section
+  <main className="min-h-screen bg-black text-white">
+    {!introComplete && (
+      <IntroSequence
+        onComplete={() => setIntroComplete(true)}
+      />
+    )}
+
+    <section
   id="home"
   onMouseMove={handleHeroMouseMove}
   onMouseLeave={resetHeroTelemetry}
