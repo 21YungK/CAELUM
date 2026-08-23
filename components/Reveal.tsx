@@ -8,6 +8,7 @@ type RevealProps = {
   delay?: number;
   y?: number;
   className?: string;
+  amount?: number;
 };
 
 export default function Reveal({
@@ -15,6 +16,7 @@ export default function Reveal({
   delay = 0,
   y = 18,
   className = "",
+  amount = 0.1,
 }: RevealProps) {
   return (
     <motion.div
@@ -26,9 +28,9 @@ export default function Reveal({
         opacity: 1,
         y: 0,
       }}
-    viewport={{
+      viewport={{
         once: false,
-        amount: 0.4,
+        amount,
       }}
       transition={{
         duration: 0.65,
