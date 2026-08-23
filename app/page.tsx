@@ -171,8 +171,9 @@ export default function Home() {
             </span>
           </div>
 
-          <span className="text-zinc-700 transition-all group-hover:translate-x-1 group-hover:text-white">
-            ↗
+          <span className="relative h-5 w-5 text-zinc-700 transition-all group-hover:translate-x-1 group-hover:text-white">
+            <span className="absolute left-[3px] top-[9px] h-px w-3 bg-current" />
+            <span className="absolute right-[3px] top-[5px] h-2 w-2 rotate-45 border-r border-t border-current" />
           </span>
         </a>
       ))}

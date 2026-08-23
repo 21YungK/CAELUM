@@ -184,23 +184,20 @@ function CaelumDrone({
   });
 
   return (
-    <group
-      ref={group}
-      scale={isMobile ? 0.48 : 0.8}
-      rotation={[0.08, -0.75, 0]}
-      position={[
-        isMobile ? 0 : 0.45,
-        isMobile ? -0.05 : -0.2,
-        0,
-      ]}
+  <group>
+    {/* Larger invisible interaction area */}
+    <mesh
+      position={[0, 0, -0.5]}
       onPointerDown={(e) => {
         e.stopPropagation();
 
         isDragging.current = true;
+
         onInteractionStart?.();
 
         lastPointerX.current = e.clientX;
         lastPointerY.current = e.clientY;
+
         spinVelocityY.current = 0;
         spinVelocityX.current = 0;
         peakSpinVelocity.current = 0;
@@ -221,79 +218,90 @@ function CaelumDrone({
         e.stopPropagation();
 
         const deltaX =
-          e.clientX -
-          lastPointerX.current;
+          e.clientX - lastPointerX.current;
 
         const deltaY =
-          e.clientY -
-          lastPointerY.current;
+          e.clientY - lastPointerY.current;
 
         lastPointerX.current = e.clientX;
         lastPointerY.current = e.clientY;
 
         // Horizontal drag
-
         group.current.rotation.y +=
-        deltaX * (isMobile ? 0.012 : 0.008);
+          deltaX * (isMobile ? 0.012 : 0.008);
 
         // Vertical drag
-
         group.current.rotation.x +=
-        deltaY * (isMobile ? 0.01 : 0.006);
+          deltaY * (isMobile ? 0.01 : 0.006);
 
         // Store rotational momentum
         spinVelocityY.current =
-        deltaX * (isMobile ? 0.016 : 0.012);
+          deltaX * (isMobile ? 0.016 : 0.012);
+
         peakSpinVelocity.current = Math.max(
-            peakSpinVelocity.current,
-            Math.abs(spinVelocityY.current)
+          peakSpinVelocity.current,
+          Math.abs(spinVelocityY.current)
         );
 
         spinVelocityX.current =
-        deltaY * (isMobile ? 0.012 : 0.008);
-
-        // Fast swipe = launch
-        // const launchThreshold =
-        //   isMobile ? 70 : 50;
-
-        // if (
-        //   Math.abs(deltaX) >
-        //   launchThreshold
-        // ) {
-        //   launchDrone();
-        // }
+          deltaY * (isMobile ? 0.012 : 0.008);
       }}
       onPointerUp={(e) => {
         e.stopPropagation();
 
         isDragging.current = false;
+
         onInteractionEnd?.();
 
         (
-            e.target as HTMLElement
+          e.target as HTMLElement
         ).releasePointerCapture?.(
-            e.pointerId
+          e.pointerId
         );
 
-        // Only launch after the user releases
-        // with a genuinely hard spin.
         const launchVelocity =
-            isMobile ? 0.75 : 0.5;
+          isMobile ? 0.75 : 0.5;
 
-            if (
-            peakSpinVelocity.current >
-            launchVelocity
-            ) {
-            launchDrone();
-            }
-        }}
+        if (
+          peakSpinVelocity.current >
+          launchVelocity
+        ) {
+          launchDrone();
+        }
+      }}
       onPointerCancel={() => {
         isDragging.current = false;
       }}
     >
+      <planeGeometry
+        args={[
+          isMobile ? 10 : 8,
+          isMobile ? 10 : 6,
+        ]}
+      />
+
+      <meshBasicMaterial
+        transparent
+        opacity={0}
+        depthWrite={false}
+      />
+    </mesh>
+
+    {/* Actual drone */}
+    <group
+      ref={group}
+      scale={isMobile ? 0.48 : 0.8}
+      rotation={[0.08, -0.75, 0]}
+      position={[
+        isMobile ? 0 : 0.45,
+        isMobile ? -0.05 : -0.2,
+        0,
+      ]}
+    >
       <primitive object={scene} />
     </group>
-  );
+  </group>
+);
 }
 
 export default function DroneScene({
