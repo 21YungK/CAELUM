@@ -152,15 +152,29 @@ export default function ExperienceTimeline() {
                 <p className="mt-3 max-w-md leading-7 text-zinc-600 transition-colors group-hover:text-zinc-400">
                   {experience.summary}
                 </p>
+
+                <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-4 md:hidden">
+                  <span className="font-mono text-[10px] tracking-[0.22em] text-zinc-500">
+                    {isOpen ? "HIDE FIELD NOTES" : "VIEW FIELD NOTES"}
+                  </span>
+
+                  <span
+                    className={`font-mono text-lg text-zinc-500 transition-transform duration-300 ${
+                      isOpen ? "rotate-45" : ""
+                    }`}
+                  >
+                    +
+                  </span>
+                </div>
               </div>
 
-              <div className="flex items-start justify-end font-mono text-lg text-zinc-600 transition-colors group-hover:text-white">
-                <span
-                  className={`transition-transform duration-300 ${
-                    isOpen ? "rotate-45" : ""
-                  }`}
-                ></span>
-              </div>
+              <span
+                className={`transition-transform duration-300 ${
+                  isOpen ? "rotate-45" : ""
+                }`}
+              >
+                +
+              </span>
             </button>
 
             <div
