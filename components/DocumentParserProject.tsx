@@ -75,10 +75,10 @@ export default function DocumentParserProject() {
         </p>
 
         <p className="mt-8 max-w-lg leading-8 text-zinc-400">
-        A full-stack document-processing system built to automate structured
-        data extraction from commercial real-estate documents. The platform
-        combined document parsing, retrieval-augmented generation, batch
-        processing, validation, and human review into a single workflow.
+          A full-stack document-processing system built to automate structured
+          data extraction from commercial real-estate documents. The platform
+          combined document parsing, retrieval-augmented generation, batch
+          processing, validation, and human review into a single workflow.
         </p>
 
         <div className="mt-8 flex flex-wrap gap-2">
@@ -89,7 +89,7 @@ export default function DocumentParserProject() {
             "CHROMADB",
             "GPT-4o",
             "EASYOCR",
-            ].map((tag) => (
+          ].map((tag) => (
             <span
               key={tag}
               className="border border-white/10 px-3 py-1.5 font-mono text-[10px] tracking-[0.15em] text-zinc-500"
@@ -164,38 +164,30 @@ export default function DocumentParserProject() {
           </p>
 
           <div className="mt-5 border-t border-white/10 pt-4">
-            <p className="text-[10px] tracking-[0.2em] text-zinc-700">
-              OUTPUT
-            </p>
+            <p className="text-[10px] tracking-[0.2em] text-zinc-700">OUTPUT</p>
 
-            <p className="mt-2 text-sm text-zinc-300">
-              {activeStage.output}
-            </p>
+            <p className="mt-2 text-sm text-zinc-300">{activeStage.output}</p>
           </div>
         </div>
 
         {/* RESULTS */}
         <div className="mt-8 flex items-center justify-between border-t border-white/10 pt-5">
-            <div>
+          <div>
             <p className="text-[10px] tracking-[0.2em] text-zinc-700">
-            VALIDATION SET
+              VALIDATION SET
             </p>
 
-            <p className="mt-2 text-sm text-zinc-300">
-            55 OFFERING MEMORANDA
-            </p>
-        </div>
+            <p className="mt-2 text-sm text-zinc-300">55 OFFERING MEMORANDA</p>
+          </div>
 
-        <div className="text-right">
+          <div className="text-right">
             <p className="text-[10px] tracking-[0.2em] text-zinc-700">
-            AVG. PROCESSING
+              AVG. PROCESSING
             </p>
 
-            <p className="mt-2 text-sm text-zinc-300">
-            5–10 SEC / DOCUMENT
-            </p>
+            <p className="mt-2 text-sm text-zinc-300">5–10 SEC / DOCUMENT</p>
+          </div>
         </div>
-    </div>
         <div className="mt-8 grid grid-cols-2 gap-px border-y border-white/10 bg-white/10">
           <div className="bg-black p-4">
             <p className="text-[10px] tracking-[0.2em] text-zinc-700">

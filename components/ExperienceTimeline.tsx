@@ -89,7 +89,6 @@ export default function ExperienceTimeline() {
 
   return (
     <div className="relative">
-
       {/* Vertical timeline */}
       <div className="absolute bottom-0 left-[126px] top-0 hidden w-px bg-white/10 md:block" />
 
@@ -100,24 +99,24 @@ export default function ExperienceTimeline() {
           <motion.div
             key={`${experience.company}-${experience.period}`}
             initial={{
-                opacity: 0,
-                y: 18,
+              opacity: 0,
+              y: 18,
             }}
             whileInView={{
-                opacity: 1,
-                y: 0,
+              opacity: 1,
+              y: 0,
             }}
             viewport={{
-                once: false,
-                amount: 0.35,
+              once: false,
+              amount: 0.35,
             }}
             transition={{
-                duration: 0.55,
-                delay: index * 0.05,
-                ease: [0.22, 1, 0.36, 1],
+              duration: 0.55,
+              delay: index * 0.05,
+              ease: [0.22, 1, 0.36, 1],
             }}
             className="group relative border-b border-white/10 transition-colors duration-300 hover:border-white/25"
-            >
+          >
             {/* Timeline point */}
             <div className="absolute left-[121px] top-[46px] z-10 hidden h-[11px] w-[11px] rounded-full border border-zinc-600 bg-black transition-all duration-300 group-hover:border-white md:block">
               <div
@@ -139,18 +138,16 @@ export default function ExperienceTimeline() {
 
               <div className="md:pl-4">
                 <h3 className="text-2xl font-medium tracking-tight text-zinc-200 transition-colors group-hover:text-white">
-                    {experience.company}
+                  {experience.company}
                 </h3>
 
                 <p className="mt-2 font-mono text-xs tracking-[0.2em] text-zinc-500">
-                    {experience.category}
+                  {experience.category}
                 </p>
-                </div>
+              </div>
 
               <div>
-                <p className="text-zinc-300">
-                  {experience.role}
-                </p>
+                <p className="text-zinc-300">{experience.role}</p>
 
                 <p className="mt-3 max-w-md leading-7 text-zinc-600 transition-colors group-hover:text-zinc-400">
                   {experience.summary}
@@ -162,9 +159,7 @@ export default function ExperienceTimeline() {
                   className={`transition-transform duration-300 ${
                     isOpen ? "rotate-45" : ""
                   }`}
-                >
-                  
-                </span>
+                ></span>
               </div>
             </button>
 

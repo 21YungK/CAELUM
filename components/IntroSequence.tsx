@@ -52,19 +52,19 @@ export default function IntroSequence({
   useEffect(() => {
     aircraftTimerRef.current = window.setTimeout(() => {
       setPhase("aircraft");
-    }, 700);
+    }, 1000);
 
     readyTimerRef.current = window.setTimeout(() => {
       setPhase("ready");
-    }, 3200);
+    }, 8000);
 
     exitTimerRef.current = window.setTimeout(() => {
       setPhase("exit");
-    }, 5000);
+    }, 13000);
 
     completeTimerRef.current = window.setTimeout(() => {
       finishIntro();
-    }, 5700);
+    }, 14000);
 
     return () => {
       clearIntroTimers();

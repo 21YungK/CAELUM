@@ -8,19 +8,14 @@ type FlightVisualProps = {
   pitch: number;
 };
 
-export default function FlightVisual({
-  roll,
-  pitch,
-}: FlightVisualProps) {
+export default function FlightVisual({ roll, pitch }: FlightVisualProps) {
   // DESKTOP
   // Cursor movement
-
 
   const heading = 247 + roll * 0.35;
 
   // MOBILE
   // No cursor
-
 
   const [mobileRoll, setMobileRoll] = useState(0);
   const [mobilePitch, setMobilePitch] = useState(0);
@@ -47,8 +42,7 @@ export default function FlightVisual({
     };
   }, []);
 
-  const mobileHeading =
-    247 + mobileRoll * 0.35;
+  const mobileHeading = 247 + mobileRoll * 0.35;
 
   return (
     <>
@@ -231,9 +225,7 @@ export default function FlightVisual({
 
           <div className="mt-2 flex items-center justify-between border-t border-white/10 pt-4 font-mono text-[10px] tracking-[0.18em]">
             <div>
-              <p className="text-zinc-700">
-                ROLL
-              </p>
+              <p className="text-zinc-700">ROLL</p>
 
               <p className="mt-1 text-zinc-300">
                 {roll >= 0 ? "+" : ""}
@@ -242,9 +234,7 @@ export default function FlightVisual({
             </div>
 
             <div>
-              <p className="text-zinc-700">
-                PITCH
-              </p>
+              <p className="text-zinc-700">PITCH</p>
 
               <p className="mt-1 text-zinc-300">
                 {pitch >= 0 ? "+" : ""}
@@ -253,23 +243,15 @@ export default function FlightVisual({
             </div>
 
             <div>
-              <p className="text-zinc-700">
-                HEADING
-              </p>
+              <p className="text-zinc-700">HEADING</p>
 
-              <p className="mt-1 text-zinc-300">
-                {heading.toFixed(0)}°
-              </p>
+              <p className="mt-1 text-zinc-300">{heading.toFixed(0)}°</p>
             </div>
 
             <div className="text-right">
-              <p className="text-zinc-700">
-                STATUS
-              </p>
+              <p className="text-zinc-700">STATUS</p>
 
-              <p className="mt-1 text-zinc-300">
-                TRACKING
-              </p>
+              <p className="mt-1 text-zinc-300">TRACKING</p>
             </div>
           </div>
         </div>
@@ -280,13 +262,9 @@ export default function FlightVisual({
       <div className="mt-12 block lg:hidden">
         <div className="border-t border-white/10 pt-6">
           <div className="flex items-center justify-between font-mono text-[10px] tracking-[0.2em]">
-            <span className="text-zinc-700">
-              FLIGHT VECTOR // MOBILE
-            </span>
+            <span className="text-zinc-700">FLIGHT VECTOR // MOBILE</span>
 
-            <span className="text-zinc-600">
-              ACTIVE
-            </span>
+            <span className="text-zinc-600">ACTIVE</span>
           </div>
 
           <div className="relative mx-auto mt-8 h-44 w-full max-w-sm">
@@ -315,16 +293,11 @@ export default function FlightVisual({
 
               <motion.g
                 animate={{
-                  x:
-                    210 +
-                    mobileRoll * 2.2,
+                  x: 210 + mobileRoll * 2.2,
 
-                  y:
-                    78 -
-                    mobilePitch * 2.4,
+                  y: 78 - mobilePitch * 2.4,
 
-                  rotate:
-                    mobileRoll * 0.5,
+                  rotate: mobileRoll * 0.5,
                 }}
                 transition={{
                   duration: 0.8,
@@ -367,39 +340,27 @@ export default function FlightVisual({
 
           <div className="grid grid-cols-3 gap-4 border-t border-white/10 pt-4 font-mono text-[10px] tracking-[0.15em]">
             <div>
-              <p className="text-zinc-700">
-                ROLL
-              </p>
+              <p className="text-zinc-700">ROLL</p>
 
               <p className="mt-1 text-zinc-400">
-                {mobileRoll >= 0
-                  ? "+"
-                  : ""}
+                {mobileRoll >= 0 ? "+" : ""}
                 {mobileRoll.toFixed(1)}°
               </p>
             </div>
 
             <div>
-              <p className="text-zinc-700">
-                PITCH
-              </p>
+              <p className="text-zinc-700">PITCH</p>
 
               <p className="mt-1 text-zinc-400">
-                {mobilePitch >= 0
-                  ? "+"
-                  : ""}
+                {mobilePitch >= 0 ? "+" : ""}
                 {mobilePitch.toFixed(1)}°
               </p>
             </div>
 
             <div className="text-right">
-              <p className="text-zinc-700">
-                HEADING
-              </p>
+              <p className="text-zinc-700">HEADING</p>
 
-              <p className="mt-1 text-zinc-400">
-                {mobileHeading.toFixed(0)}°
-              </p>
+              <p className="mt-1 text-zinc-400">{mobileHeading.toFixed(0)}°</p>
             </div>
           </div>
         </div>
