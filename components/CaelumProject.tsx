@@ -16,8 +16,7 @@ export default function CaelumProject() {
 
         <p className="mt-8 max-w-lg leading-8 text-zinc-400">
           An interactive portfolio built to present technical work through
-          responsive interfaces, system-inspired visuals, and purposeful
-          motion.
+          responsive interfaces, system-inspired visuals, and purposeful motion.
         </p>
 
         <div className="mt-8 flex flex-wrap gap-2">
