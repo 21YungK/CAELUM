@@ -90,20 +90,20 @@ function CaelumDrone({
       if (!isDragging.current && Math.abs(spinVelocityX.current) < 0.003) {
         group.current.rotation.x = THREE.MathUtils.lerp(
           group.current.rotation.x,
-          0.08 + Math.sin(t * 1.15) * 0.035,
+          0.08 + Math.sin(t * 1.15) * 0.10,
           Math.min(delta * 2, 1),
         );
 
         group.current.rotation.z = THREE.MathUtils.lerp(
           group.current.rotation.z,
-          Math.sin(t * 1.65) * 0.045,
+          Math.sin(t * 1.65) * 0.14,
           Math.min(delta * 2, 1),
         );
       }
 
       //RES pos
 
-      const baseX = isMobile ? 0.24 : 0.45;
+      const baseX = isMobile ? 0.19 : 0.45;
       const baseY = isMobile ? -0.05 : -0.2;
 
       group.current.position.x =

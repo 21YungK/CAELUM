@@ -99,15 +99,15 @@ export default function IntroSequence({ onComplete }: IntroSequenceProps) {
             duration: 0.6,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black"
+          className="fixed inset-0 z-[100] flex h-[100dvh] items-center justify-center overflow-hidden bg-black"
         >
           {/* TOP */}
 
-          <div className="absolute left-6 top-6 font-mono text-[9px] tracking-[0.25em] text-zinc-700 md:left-10 md:top-8 md:text-[10px]">
+          <div className="absolute left-6 top-[calc(env(safe-area-inset-top)+1.5rem)] font-mono text-[9px] tracking-[0.25em] text-zinc-700 md:left-10 md:top-8 md:text-[10px]">
             CAELUM // FLIGHT INTERFACE
           </div>
 
-          <div className="absolute right-6 top-6 text-right font-mono text-[9px] tracking-[0.25em] text-zinc-700 md:right-10 md:top-8 md:text-[10px]">
+          <div className="absolute right-6 top-[calc(env(safe-area-inset-top)+1.5rem)] text-right font-mono text-[9px] tracking-[0.25em] text-zinc-700 md:right-10 md:top-8 md:text-[10px]">
             UAV SYSTEM ONLINE
           </div>
 
@@ -127,7 +127,7 @@ export default function IntroSequence({ onComplete }: IntroSequenceProps) {
                 duration: 0.8,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="relative mx-auto h-[76vh] w-screen md:h-[70vh] md:w-[90vw]"
+              className="relative mx-auto h-[68dvh] w-screen md:h-[70vh] md:w-[90vw]"
             >
               <DroneScene
                 onLaunch={handleDroneLaunch}
@@ -155,7 +155,7 @@ export default function IntroSequence({ onComplete }: IntroSequenceProps) {
                 duration: 0.5,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="absolute -bottom-10 text-center"
+              className="absolute -bottom-8 text-center md:-bottom-10"
             >
               <p className="font-mono text-[10px] tracking-[0.24em] text-zinc-600">
                 {isLaunching
