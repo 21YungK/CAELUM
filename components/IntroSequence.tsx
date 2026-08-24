@@ -8,12 +8,10 @@ type IntroSequenceProps = {
   onComplete: () => void;
 };
 
-export default function IntroSequence({
-  onComplete,
-}: IntroSequenceProps) {
-  const [phase, setPhase] = useState<
-    "boot" | "aircraft" | "ready" | "exit"
-  >("boot");
+export default function IntroSequence({ onComplete }: IntroSequenceProps) {
+  const [phase, setPhase] = useState<"boot" | "aircraft" | "ready" | "exit">(
+    "boot",
+  );
 
   const completedRef = useRef(false);
 
@@ -72,21 +70,21 @@ export default function IntroSequence({
   }, []);
 
   const handleDroneLaunch = () => {
-  if (completedRef.current) return;
+    if (completedRef.current) return;
 
-  clearIntroTimers();
-  setIsLaunching(true);
+    clearIntroTimers();
+    setIsLaunching(true);
 
-  // More time to fly 
-  window.setTimeout(() => {
-    setPhase("exit");
-  }, 750);
+    // More time to fly
+    window.setTimeout(() => {
+      setPhase("exit");
+    }, 750);
 
-  // Reveal homepage after the exit fade
-  window.setTimeout(() => {
-    finishIntro();
-  }, 1450);
-};
+    // Reveal homepage after the exit fade
+    window.setTimeout(() => {
+      finishIntro();
+    }, 1450);
+  };
 
   return (
     <AnimatePresence>
@@ -135,7 +133,7 @@ export default function IntroSequence({
                 onLaunch={handleDroneLaunch}
                 onInteractionStart={() => setIsInteracting(true)}
                 onInteractionEnd={() => setIsInteracting(false)}
-                />
+              />
             </motion.div>
 
             <motion.div
@@ -144,18 +142,14 @@ export default function IntroSequence({
                 y: 8,
               }}
               animate={{
-                opacity:
-                    isLaunching
-                        ? 1
-                        : phase === "aircraft" || phase === "ready"
-                        ? isInteracting
-                        ? 0.25
-                        : 1
-                        : 0,
-                y:
-                  phase === "aircraft" || phase === "ready"
-                    ? 0
-                    : 8,
+                opacity: isLaunching
+                  ? 1
+                  : phase === "aircraft" || phase === "ready"
+                    ? isInteracting
+                      ? 0.25
+                      : 1
+                    : 0,
+                y: phase === "aircraft" || phase === "ready" ? 0 : 8,
               }}
               transition={{
                 duration: 0.5,
@@ -165,9 +159,9 @@ export default function IntroSequence({
             >
               <p className="font-mono text-[10px] tracking-[0.24em] text-zinc-600">
                 {isLaunching
-                ? "LAUNCH COMMAND ACCEPTED"
-                : "DRAG // SPIN TO LAUNCH"}
-                </p>
+                  ? "LAUNCH COMMAND ACCEPTED"
+                  : "DRAG // SPIN TO LAUNCH"}
+              </p>
             </motion.div>
 
             <motion.div

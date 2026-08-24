@@ -103,7 +103,7 @@ function CaelumDrone({
 
       //RES pos
 
-      const baseX = isMobile ? 0 : 0.45;
+      const baseX = isMobile ? 0.26 : 0.45;
       const baseY = isMobile ? -0.05 : -0.2;
 
       group.current.position.x =
