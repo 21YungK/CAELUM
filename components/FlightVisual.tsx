@@ -257,53 +257,77 @@ export default function FlightVisual({ roll, pitch }: FlightVisualProps) {
         </div>
       </div>
 
-      {/* Phone/ tablet */}
-
+      {/* Phone / tablet */}
       <div className="mt-12 block lg:hidden">
         <div className="border-t border-white/10 pt-6">
           <div className="flex items-center justify-between font-mono text-[10px] tracking-[0.2em]">
             <span className="text-zinc-700">FLIGHT VECTOR // MOBILE</span>
-
             <span className="text-zinc-600">ACTIVE</span>
           </div>
 
-          <div className="relative mx-auto mt-8 h-44 w-full max-w-sm">
+          <div className="relative mx-auto mt-8 h-52 w-full max-w-sm">
             <svg
-              viewBox="0 0 360 180"
+              viewBox="0 0 360 210"
               className="h-full w-full"
               aria-hidden="true"
             >
-              <path
-                d="M20 140 C90 125, 120 70, 190 88 C245 102, 280 60, 340 40"
+              {/* ANIMATED TRAJECTORY */}
+              <motion.path
+                d="M20 155 C90 135, 120 82, 190 96 C245 108, 280 68, 340 48"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="1"
-                className="text-white/20"
+                className="text-white/25"
+                animate={{
+                  d: [
+                    "M20 155 C90 135, 120 82, 190 96 C245 108, 280 68, 340 48",
+                    "M20 150 C85 142, 125 72, 190 92 C250 110, 285 58, 340 52",
+                    "M20 160 C95 132, 130 90, 195 104 C250 116, 292 76, 340 44",
+                    "M20 155 C90 135, 120 82, 190 96 C245 108, 280 68, 340 48",
+                  ],
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
               />
 
+              {/* CENTER GUIDE */}
               <line
                 x1="40"
-                y1="90"
+                y1="105"
                 x2="320"
-                y2="90"
+                y2="105"
                 stroke="currentColor"
                 strokeWidth="1"
                 className="text-white/10"
               />
 
+              {/* MOVING VECTOR */}
               <motion.g
                 animate={{
-                  x: 210 + mobileRoll * 2.2,
-
-                  y: 78 - mobilePitch * 2.4,
-
-                  rotate: mobileRoll * 0.5,
+                  x: 200 + mobileRoll * 3.4,
+                  y: 92 - mobilePitch * 3.8,
+                  rotate: mobileRoll * 0.8,
                 }}
                 transition={{
                   duration: 0.8,
                   ease: "easeInOut",
                 }}
               >
+                {/* TRAIL */}
+                <line
+                  x1="-48"
+                  y1="0"
+                  x2="-14"
+                  y2="0"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                  strokeDasharray="3 5"
+                  className="text-white/25"
+                />
+
                 <line
                   x1="12"
                   y1="0"
@@ -325,20 +349,47 @@ export default function FlightVisual({ roll, pitch }: FlightVisualProps) {
                 />
               </motion.g>
 
-              <circle
-                cx="280"
-                cy="55"
+              {/* WAYPOINT */}
+              <motion.circle
+                cx="285"
+                cy="66"
                 r="4"
                 fill="none"
                 stroke="currentColor"
-                className="text-white/50"
+                className="text-white/60"
+                animate={{
+                  r: [4, 7, 4],
+                  opacity: [0.85, 0.25, 0.85],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
               />
+
+              <circle
+                cx="285"
+                cy="66"
+                r="11"
+                fill="none"
+                stroke="currentColor"
+                strokeDasharray="2 4"
+                className="text-white/10"
+              />
+
+              <text
+                x="298"
+                y="61"
+                className="fill-zinc-700 font-mono text-[7px] tracking-[0.18em]"
+              >
+                WP // 02
+              </text>
             </svg>
           </div>
 
           {/* MOBILE TELEMETRY */}
-
-          <div className="grid grid-cols-3 gap-4 border-t border-white/10 pt-4 font-mono text-[10px] tracking-[0.15em]">
+          <div className="mt-6 grid grid-cols-3 gap-4 border-t border-white/10 pb-8 pt-5 font-mono text-[10px] tracking-[0.15em]">
             <div>
               <p className="text-zinc-700">ROLL</p>
 

@@ -167,14 +167,6 @@ export default function ExperienceTimeline() {
                   </span>
                 </div>
               </div>
-
-              <span
-                className={`transition-transform duration-300 ${
-                  isOpen ? "rotate-45" : ""
-                }`}
-              >
-                +
-              </span>
             </button>
 
             <div
