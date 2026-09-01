@@ -56,7 +56,7 @@ export default function ContactSection() {
                 </a>
 
                 <a
-                  href="https://www.linkedin.com/in/drew-park-dev"
+                  href="https://www.linkedin.com/in/kyungjin-p-457756132"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center justify-between border-b border-white/10 py-6 transition-all duration-300 hover:pl-3"
