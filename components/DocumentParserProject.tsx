@@ -73,12 +73,18 @@ export default function DocumentParserProject() {
         <p className="mt-4 font-mono text-xs tracking-[0.2em] text-zinc-500">
           RAG // DOCUMENT INTELLIGENCE // AUTOMATION
         </p>
+        <div className="mt-5 inline-flex border border-white/10 px-3 py-1.5 font-mono text-[10px] tracking-[0.18em] text-zinc-500">
+          STATUS // WORKING PIPELINE · FRONT-END CONCEPT
+        </div>
 
-        <p className="mt-8 max-w-lg leading-8 text-zinc-400">
-          A full-stack document-processing system built to automate structured
-          data extraction from commercial real-estate documents. The platform
-          combined document parsing, retrieval-augmented generation, batch
-          processing, validation, and human review into a single workflow.
+        <p className="mt-6 max-w-lg leading-8 text-zinc-400">
+          A working document-processing pipeline built to automate structured
+          data extraction from commercial real-estate documents. The interface
+          shown here is a portfolio mockup exploring the planned front-end
+          structure for reviewing, validating, and managing extracted results.
+        </p>
+        <p className="mt-4 max-w-lg font-mono text-[10px] leading-5 tracking-[0.16em] text-zinc-600">
+          CURRENT // DOCUMENT PIPELINE · NEXT // FRONT-END STRUCTURE
         </p>
 
         <div className="mt-8 flex flex-wrap gap-2">
@@ -101,11 +107,17 @@ export default function DocumentParserProject() {
       </div>
 
       {/* RIGHT SIDE */}
-      <div className="border border-white/10 p-6 font-mono">
-        <div className="flex items-center justify-between border-b border-white/10 pb-4">
-          <span className="text-xs tracking-[0.25em] text-zinc-500">
-            DOCUMENT PIPELINE
-          </span>
+      <div className="flex items-start justify-between border-b border-white/10 pb-4">
+        <div className="border border-white/10 p-6 font-mono">
+          <div>
+            <span className="block text-xs tracking-[0.25em] text-zinc-500">
+              DOCUMENT PIPELINE
+            </span>
+
+            <span className="mt-1 block text-[9px] tracking-[0.18em] text-zinc-700">
+              INTERFACE MOCKUP // FRONT-END PLANNED
+            </span>
+          </div>
 
           <span className="text-[10px] tracking-[0.2em] text-zinc-700">
             RAG SYSTEM
