@@ -73,6 +73,7 @@ export default function DocumentParserProject() {
         <p className="mt-4 font-mono text-xs tracking-[0.2em] text-zinc-500">
           RAG // DOCUMENT INTELLIGENCE // AUTOMATION
         </p>
+
         <div className="mt-5 inline-flex border border-white/10 px-3 py-1.5 font-mono text-[10px] tracking-[0.18em] text-zinc-500">
           STATUS // WORKING PIPELINE · FRONT-END CONCEPT
         </div>
@@ -83,6 +84,7 @@ export default function DocumentParserProject() {
           shown here is a portfolio mockup exploring the planned front-end
           structure for reviewing, validating, and managing extracted results.
         </p>
+
         <p className="mt-4 max-w-lg font-mono text-[10px] leading-5 tracking-[0.16em] text-zinc-600">
           CURRENT // DOCUMENT PIPELINE · NEXT // FRONT-END STRUCTURE
         </p>
@@ -107,8 +109,9 @@ export default function DocumentParserProject() {
       </div>
 
       {/* RIGHT SIDE */}
-      <div className="flex items-start justify-between border-b border-white/10 pb-4">
-        <div className="border border-white/10 p-6 font-mono">
+      <div className="border border-white/10 p-6 font-mono">
+        {/* HEADER */}
+        <div className="flex items-start justify-between border-b border-white/10 pb-4">
           <div>
             <span className="block text-xs tracking-[0.25em] text-zinc-500">
               DOCUMENT PIPELINE
@@ -200,11 +203,14 @@ export default function DocumentParserProject() {
             <p className="mt-2 text-sm text-zinc-300">5–10 SEC / DOCUMENT</p>
           </div>
         </div>
+
+        {/* METRICS */}
         <div className="mt-8 grid grid-cols-2 gap-px border-y border-white/10 bg-white/10">
           <div className="bg-black p-4">
             <p className="text-[10px] tracking-[0.2em] text-zinc-700">
               LOCATION
             </p>
+
             <p className="mt-2 text-sm text-zinc-300">96.00%</p>
           </div>
 
@@ -212,6 +218,7 @@ export default function DocumentParserProject() {
             <p className="text-[10px] tracking-[0.2em] text-zinc-700">
               BUILDING + LOT
             </p>
+
             <p className="mt-2 text-sm text-zinc-300">95.91%</p>
           </div>
 
@@ -219,6 +226,7 @@ export default function DocumentParserProject() {
             <p className="text-[10px] tracking-[0.2em] text-zinc-700">
               TRAFFIC COUNTS
             </p>
+
             <p className="mt-2 text-sm text-zinc-300">83.27%</p>
           </div>
 
@@ -226,6 +234,7 @@ export default function DocumentParserProject() {
             <p className="text-[10px] tracking-[0.2em] text-zinc-700">
               VISUAL DATA
             </p>
+
             <p className="mt-2 text-sm text-zinc-300">42.42%</p>
           </div>
         </div>
