@@ -33,8 +33,7 @@ const flightEvents = {
 };
 
 export default function NavisProject() {
-  const [selectedTime, setSelectedTime] =
-    useState<0 | 70.22 | 229.01>(70.22);
+  const [selectedTime, setSelectedTime] = useState<0 | 70.22 | 229.01>(70.22);
 
   const selectedEvent = flightEvents[selectedTime];
 
@@ -53,11 +52,17 @@ export default function NavisProject() {
         <p className="mt-4 font-mono text-xs tracking-[0.2em] text-zinc-500">
           UAV TELEMETRY // LOCAL AI // DIAGNOSTICS
         </p>
+        <div className="mt-5 inline-flex border border-white/10 px-3 py-1.5 font-mono text-[10px] tracking-[0.18em] text-zinc-500">
+          STATUS // WORKING CORE · FRONT-END CONCEPT
+        </div>
 
-        <p className="mt-8 max-w-lg leading-8 text-zinc-400">
-          A local UAV flight-log analysis tool designed to inspect telemetry,
-          detect anomalies, correlate flight events, and assist with technical
-          debugging.
+        <p className="mt-6 max-w-lg leading-8 text-zinc-400">
+          NAVIS is a working local flight-log analysis toolkit. The interface
+          shown here is a portfolio mockup exploring a planned front-end for its
+          existing telemetry, anomaly-detection, and diagnostic tools.
+        </p>
+        <p className="mt-4 max-w-lg font-mono text-[10px] leading-5 tracking-[0.16em] text-zinc-600">
+          CURRENT // LOCAL PYTHON TOOLING · NEXT // FRONT-END STRUCTURE
         </p>
 
         <div className="mt-8 flex flex-wrap gap-2">
@@ -83,9 +88,15 @@ export default function NavisProject() {
       <div className="border border-white/10 p-6 font-mono">
         {/* HEADER */}
         <div className="flex items-center justify-between border-b border-white/10 pb-4">
-          <span className="text-xs tracking-[0.25em] text-zinc-500">
-            NAVIS // FLIGHT INSPECTOR
-          </span>
+          <div>
+            <span className="block text-xs tracking-[0.25em] text-zinc-500">
+              NAVIS // FLIGHT INSPECTOR
+            </span>
+
+            <span className="mt-1 block text-[9px] tracking-[0.18em] text-zinc-700">
+              INTERFACE MOCKUP // FRONT-END PLANNED
+            </span>
+          </div>
 
           <span className="text-xs text-zinc-700">
             {selectedTime.toFixed(2)} S
@@ -186,9 +197,7 @@ export default function NavisProject() {
             SELECTED EVENT
           </p>
 
-          <h4 className="mt-3 text-2xl text-zinc-200">
-            {selectedEvent.label}
-          </h4>
+          <h4 className="mt-3 text-2xl text-zinc-200">{selectedEvent.label}</h4>
         </div>
 
         {/* METRICS */}
@@ -214,23 +223,15 @@ export default function NavisProject() {
           </div>
 
           <div className="bg-black p-4">
-            <p className="text-[10px] tracking-[0.2em] text-zinc-700">
-              SOURCE
-            </p>
+            <p className="text-[10px] tracking-[0.2em] text-zinc-700">SOURCE</p>
 
-            <p className="mt-2 text-sm text-zinc-300">
-              {selectedEvent.source}
-            </p>
+            <p className="mt-2 text-sm text-zinc-300">{selectedEvent.source}</p>
           </div>
 
           <div className="bg-black p-4">
-            <p className="text-[10px] tracking-[0.2em] text-zinc-700">
-              STATUS
-            </p>
+            <p className="text-[10px] tracking-[0.2em] text-zinc-700">STATUS</p>
 
-            <p className="mt-2 text-sm text-zinc-300">
-              {selectedEvent.status}
-            </p>
+            <p className="mt-2 text-sm text-zinc-300">{selectedEvent.status}</p>
           </div>
         </div>
 
